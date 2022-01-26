@@ -7,6 +7,7 @@ public class Rotate : MonoBehaviour
 
     [SerializeField] private Transform gunTransform;
     [SerializeField] private Transform shootPosition;
+    [Range(0,200)]
     [SerializeField] private float rotationSpeed;
     [SerializeField] private GameObject[] bullets;
     // Start is called before the first frame update
@@ -24,7 +25,7 @@ public class Rotate : MonoBehaviour
             GameObject bulletPrefab = bullets[Random.Range(0,bullets.Length)];
             GameObject newBullet = Instantiate(bulletPrefab);
             newBullet.transform.SetPositionAndRotation(shootPosition.position, shootPosition.rotation);
-        }  
-        
+        }
+
     }
 }

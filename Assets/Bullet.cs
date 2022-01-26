@@ -5,21 +5,25 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Transform mainTransform;
-    float moveSpeed = 12f;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float moveTime;
+    private float elapsed = 0f;
     // Start is called before the first frame update
     void Start()
-    {    
-        //StartCoroutine("FireRoutine");
-    }
-
-
-    // Update is called once per frame
-    void Update()
     {
-        mainTransform.position += mainTransform.up * moveSpeed * Time.deltaTime;
-            if(gameObject.name == "Bullet(Clone)")
+        StartCoroutine(FireRoutine());    
+            IEnumerator FireRoutine()
             {
-                Destroy(gameObject, 1.5f);
+               while (elapsed <= moveTime)
+               {
+                    mainTransform.position += mainTransform.up * moveSpeed * Time.deltaTime;
+                    elapsed += Time.deltaTime; 
+                    yield return null;
+                }
+            Destroy(gameObject);
             }
     }
+
+
 }
+
