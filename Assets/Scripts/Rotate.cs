@@ -10,6 +10,7 @@ public class Rotate : MonoBehaviour
     [Range(0,200)]
     [SerializeField] private float rotationSpeed;
     [SerializeField] private GameObject[] bullets;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class Rotate : MonoBehaviour
         gunTransform.Rotate(0,rotationSpeed * Time.deltaTime,0);
 
         if (Input.GetKeyDown(KeyCode.Space)){
+            audioSource.Play();
             GameObject bulletPrefab = bullets[Random.Range(0,bullets.Length)];
             GameObject newBullet = Instantiate(bulletPrefab);
             newBullet.transform.SetPositionAndRotation(shootPosition.position, shootPosition.rotation);
